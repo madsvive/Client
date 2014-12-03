@@ -18,9 +18,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 
 public class WeekView extends JPanel {
 	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Create the panel.
@@ -41,6 +43,8 @@ public class WeekView extends JPanel {
 		lblQOTD.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		JPanel Menu_container = new JPanel();
+		Menu_container.setMinimumSize(new Dimension(1366, 100));
+		Menu_container.setSize(new Dimension(1366, 100));
 		add(Menu_container);
 		
 		JButton btnNewButton = new JButton("Day View");
@@ -59,10 +63,21 @@ public class WeekView extends JPanel {
 		btnNext.setIcon(new ImageIcon(WeekView.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
 		Menu_container.add(btnNext);
 		
-		for (int i = 0 ; i > 7; i++){	
+		JPanel Day_container = new JPanel();
+		add(Day_container);
+		
+		JLabel WeekNumber = new JLabel("Week 48");
+		Day_container.add(WeekNumber);
+		
+		//for (int i = 0 ; i > 7; i++){	
 		
 		JPanel panel_2 = new JPanel();
-		add(panel_2);
+		panel_2.setSize(new Dimension(1366, 0));
+		Day_container.add(panel_2);
+		
+		JLabel lblDay = new JLabel("Sunday 30");
+		lblDay.setSize(new Dimension(1366, 20));
+		panel_2.add(lblDay);
 		
 		table = new JTable();
 		table.setPreferredSize(new Dimension(1366, 0));
@@ -71,7 +86,22 @@ public class WeekView extends JPanel {
 		
 		JScrollBar scrollBar = new JScrollBar();
 		panel_2.add(scrollBar);
-		}
+		
+		JPanel panel = new JPanel();
+		Day_container.add(panel);
+		
+		JLabel label = new JLabel("Monday 31");
+		label.setSize(new Dimension(1366, 20));
+		panel.add(lblDay);
+		
+		table_1 = new JTable();
+		table_1.setRowMargin(2);
+		table_1.setPreferredSize(new Dimension(1366, 0));
+		panel.add(table_1);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		panel.add(scrollBar_1);
+		//}
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
