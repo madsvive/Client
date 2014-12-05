@@ -1,5 +1,7 @@
 package logic;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -10,6 +12,7 @@ import shared.encryptionAES;
 public class Connect {
 	private Socket clientSocket;
 	private DataOutputStream outToServer;
+	private DataInputStream inFromServer;
 	private String ServerIP = "172.17.167.195";
 	private int Port = 8888;
 
@@ -32,7 +35,7 @@ public class Connect {
 	public void Send(String gsonString) throws Exception {
 		
 		ServerConnect();
-		String  encrypted = encryptionAES.encrypt(gsonString);
+		String encrypted = encryptionAES.encrypt(gsonString);
 		System.out.println(encrypted);
 		
 		try {
@@ -43,5 +46,18 @@ public class Connect {
 			e.printStackTrace();
 		}
 	}
+/*								skal laves
+	public void recieve (){
+		ServerConnect();
+		BufferedReader inFr
+		omServer;
+		try {
+			inFromServer = new DataInputStream(clientSocket.getInputStream());
+			String decrypted = encryptionAES.decrypt(inFromServer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
 
 }
