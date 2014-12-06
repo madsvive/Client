@@ -8,10 +8,9 @@ public class Main {
 		// Makes connection to server
 		Connect Clientconnect = new Connect();
 		Clientconnect.ServerConnect();
-
+		
 		// starts the gui frame
-		ScreenCalendar frame = new ScreenCalendar();
-		frame.setVisible(true);
+		new Actionhandler().run();
 	}
 
 }

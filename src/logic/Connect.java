@@ -1,19 +1,17 @@
 package logic;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import shared.encryptionAES; 
+import shared.encryptionAES;
 
 public class Connect {
 	private Socket clientSocket;
 	private DataOutputStream outToServer;
-	private DataInputStream inFromServer;
-	private String ServerIP = "172.17.167.195";
+	private String inFromServer;
+	private String ServerIP = "localhost";
 	private int Port = 8888;
 
 	public void ServerConnect() {
@@ -31,13 +29,12 @@ public class Connect {
 			e.printStackTrace();
 		}
 	}
-	
-	public void Send(String gsonString) throws Exception {
-		
+
+	public void Send(String toServer) throws Exception {
 		ServerConnect();
-		String encrypted = encryptionAES.encrypt(gsonString);
+		String encrypted = encryptionAES.encrypt(toServer);
 		System.out.println(encrypted);
-		
+
 		try {
 			outToServer.writeUTF(encrypted);
 			outToServer.flush();
@@ -46,18 +43,13 @@ public class Connect {
 			e.printStackTrace();
 		}
 	}
-/*								skal laves
-	public void recieve (){
-		ServerConnect();
-		BufferedReader inFr
-		omServer;
-		try {
-			inFromServer = new DataInputStream(clientSocket.getInputStream());
-			String decrypted = encryptionAES.decrypt(inFromServer);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
+
+	public String Recieve() throws Exception {
+		inFromServer = new DataInputStream(clientSocket.getInputStream())
+				.toString();
+		String decrypted = encryptionAES.decrypt(inFromServer);
+
+		return decrypted;
+	}
 
 }

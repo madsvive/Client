@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
 
 @SuppressWarnings("serial")
 public class ScreenCalendar extends JFrame {
@@ -22,8 +23,10 @@ public class ScreenCalendar extends JFrame {
 	 * Create the frame.
 	 */
 	public ScreenCalendar() {
+		setSize(new Dimension(1366, 700));
+		setPreferredSize(new Dimension(1366, 700));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1366, 768);
 
 		// Setting contentpane
 		contentPane = (JPanel) this.getContentPane();
@@ -32,8 +35,8 @@ public class ScreenCalendar extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 
 		// Adding panels to contentpane
+		contentPane.add(login, "login");		
 		contentPane.add(WeekView, "weekview");
-		contentPane.add(login, "login");
 		contentPane.add(DayView, "dayview");
 		c = (CardLayout) getContentPane().getLayout();
 
