@@ -1,24 +1,22 @@
 package logic;
 
 import shared.*;
+import com.google.gson.*;
 
 public class Methods {
 
-	
-	AuthUser user = new AuthUser();
+	static AuthUser user = new AuthUser();
 	Connect CO = new Connect();
+	Gson gson = new GsonBuilder().create();
 
-	public String login(String Username, String Password) throws Exception {
-		try{
-		user.setAuthUserEmail(Username);
-		user.setAuthUserPassword(Password);
-		String login = Username + Password;
-		CO.Send(login);
-		}catch (Exception e){
-			System.out.println("login bliver ikke sendt til Server");
-		}
-		
-		
-		return CO.Recieve();
-	}
+	 public String logIn(String Username, String Password) throws Exception {
+	 
+	 user.setAuthUserEmail(Username);
+	 user.setAuthUserPassword(encryptionAES.encrypt(Password));
+	 String gsonString = gson.toJson(user);
+	 
+	
+	
+	 return CO.Recieve(gsonString);
+	 }
 }

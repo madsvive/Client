@@ -28,17 +28,17 @@ public class Actionhandler {
 						.getText();
 				String password = screen.getLogIn().getTextFieldPassword()
 						.getText();
-				String reply = M.login(userName, password);
+				String reply = M.logIn(userName, password);
 				System.out.println(reply);
 				System.out.println("er vi her");
-					if (reply == "1") {
-						System.out.println("login succesfull");
-						screen.show(ScreenCalendar.WEEKVIEW);
-						// }
-					} else {
-						System.out.println("Not logged in");
-					}
-				
+				if (reply == "1") {
+					System.out.println("login succesfull");
+					screen.show(ScreenCalendar.WEEKVIEW);
+					// }
+				} else {
+					System.out.println("Not logged in");
+				}
+
 			} catch (Exception e3) {
 			}
 		}

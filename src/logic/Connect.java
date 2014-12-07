@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Connect {
+	
 	private Socket clientSocket;
 	private PrintWriter outToServer;
 	private String ServerIP = "localhost";
@@ -32,17 +33,17 @@ public class Connect {
 		}
 	}
 
-	public void Send(String toServer) throws Exception {
+	public void Send(String gsonString) throws Exception {
 		outToServer = new PrintWriter(clientSocket.getOutputStream());
 
 //		String encrypted = encryption.encrypt(toServer);
-		System.out.println(toServer);
+		System.out.println(gsonString);
 
-		outToServer.write(toServer);
+		outToServer.write(gsonString);
 		outToServer.flush();
 	}
 
-	public String Recieve() throws Exception {
+	public String Recieve(String gsonString) throws Exception {
 		
 		inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		String stringFromServer = inFromServer.readLine(); 
