@@ -26,21 +26,19 @@ public class Actionhandler {
 			try {
 				String userName = screen.getLogIn().getTextFieldUsername()
 						.getText();
-				@SuppressWarnings("deprecation")
 				String password = screen.getLogIn().getTextFieldPassword()
 						.getText();
-				if (l.getSource() == screen.getLogIn().getBtnLogIn()) {
-					String reply = M.login(userName, password);
-					System.out.println(reply);
+				String reply = M.login(userName, password);
+				System.out.println(reply);
+				System.out.println("er vi her");
 					if (reply == "1") {
-						// if(au.authenticate(userName, password, true) == 0){
 						System.out.println("login succesfull");
 						screen.show(ScreenCalendar.WEEKVIEW);
 						// }
 					} else {
 						System.out.println("Not logged in");
 					}
-				}
+				
 			} catch (Exception e3) {
 			}
 		}
