@@ -1,24 +1,26 @@
 package logic;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import shared.encryptionAES;
 
 public class Connect {
 	private Socket clientSocket;
-	private DataOutputStream outToServer;
-	private String inFromServer;
+	private PrintWriter outToServer;
 	private String ServerIP = "localhost";
 	private int Port = 8888;
+	private BufferedReader inFromServer; 
 
 	public void ServerConnect() {
 
 		try {
 			clientSocket = new Socket(ServerIP, Port);
-			outToServer = new DataOutputStream(clientSocket.getOutputStream());
+			outToServer = new PrintWriter(clientSocket.getOutputStream());
 			System.out.println("Connected with IP: " + ServerIP
 					+ " through Port: " + Port);
 		} catch (UnknownHostException e) {
@@ -31,25 +33,22 @@ public class Connect {
 	}
 
 	public void Send(String toServer) throws Exception {
-		ServerConnect();
-		String encrypted = encryptionAES.encrypt(toServer);
-		System.out.println(encrypted);
+		outToServer = new PrintWriter(clientSocket.getOutputStream());
 
-		try {
-			outToServer.writeUTF(encrypted);
-			outToServer.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String encrypted = encryption.encrypt(toServer);
+		System.out.println(toServer);
+
+		outToServer.write(toServer);
+		outToServer.flush();
 	}
 
 	public String Recieve() throws Exception {
-		inFromServer = new DataInputStream(clientSocket.getInputStream())
-				.toString();
-		String decrypted = encryptionAES.decrypt(inFromServer);
+		
+		inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		String stringFromServer = inFromServer.readLine(); 
+//		String decrypted = encryption.decrypt(stringFromServer);
 
-		return decrypted;
+		return stringFromServer;
 	}
 
 }
