@@ -2,6 +2,7 @@ package logic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import gui.ScreenCalendar;
 
 public class Actionhandler {
@@ -13,6 +14,8 @@ public class Actionhandler {
 	public Actionhandler() {
 		screen = new ScreenCalendar();
 		screen.getLogIn().addActionListener(new LogInActionListener());
+		screen.getDayView().addActionListener(new DayViewActionListener());
+		screen.getWeekView().addActionListener(new WeekViewActionListener());
 	}
 
 	public void run() {
@@ -21,25 +24,41 @@ public class Actionhandler {
 	}
 
 	public class LogInActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent l) {
+		public void actionPerformed(ActionEvent e) {
 			System.out.println("virker det");
 			try {
 				String userName = screen.getLogIn().getTextFieldUsername()
 						.getText();
+				@SuppressWarnings("deprecation")
 				String password = screen.getLogIn().getTextFieldPassword()
 						.getText();
-				String reply = M.logIn(userName, password);
-				System.out.println(reply);
-				System.out.println("er vi her");
-				if (reply == "1") {
-					System.out.println("login succesfull");
-					screen.show(ScreenCalendar.WEEKVIEW);
-					// }
-				} else {
-					System.out.println("Not logged in");
-				}
+			//	String reply = M.logIn(userName, password);
+			//	System.out.println(reply);
+				System.out.println("login succesfull");
+				screen.show(ScreenCalendar.WEEKVIEW);
+				// }
 
 			} catch (Exception e3) {
+			}
+		}
+	}
+
+	public class DayViewActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try{
+			if (e.getSource() == screen.getDayView().getBtnWeekView()) {
+				screen.show(ScreenCalendar.DAYVIEW);
+			}
+		}catch (Exception e1){
+			
+		}
+	}	}
+
+	public class WeekViewActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == screen.getDayView().getBtnWeekView()) {
+				screen.show(ScreenCalendar.DAYVIEW);
+
 			}
 		}
 	}
