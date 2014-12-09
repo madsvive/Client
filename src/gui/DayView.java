@@ -26,56 +26,13 @@ public class DayView extends JPanel {
 		setSize(new Dimension(1366, 768));
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(1366, 25));
-		panel.setBounds(0, 0, 1366, 25);
-		add(panel);
-		
-		JLabel label = new JLabel("Quote Of The Day:");
-		panel.add(label);
-		
-		JLabel label_1 = new JLabel((String) null);
-		label_1.setAlignmentX(0.5f);
-		panel.add(label_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setBounds(0, 0, 1346, 662);
-		add(panel_2);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBounds(0, 101, 1326, 561);
-		panel_2.add(panel_3);
-		
-		JLabel label_3 = new JLabel("8 September");
-		label_3.setBounds(10, 0, 174, 23);
-		panel_3.add(label_3);
-		
 		JPanel panel_5 = new JPanel();
-		panel_5.setLayout(null);
 		panel_5.setBounds(0, 0, 1326, 100);
-		panel_2.add(panel_5);
-		
-		String[] columnNames = {"First Name",
-                "Last Name",
-                "Sport",
-                "# of Years",
-                "Vegetarian"};
-		
-		Object[][] data = {
-			    {"Kathy", "Smith",
-			     "Snowboarding", new Integer(5), new Boolean(false)},
-			    {"John", "Doe",
-			     "Rowing", new Integer(3), new Boolean(true)},
-			    {"Sue", "Black",
-			     "Knitting", new Integer(2), new Boolean(false)},
-			    {"Jane", "White",
-			     "Speed reading", new Integer(20), new Boolean(true)},
-			    {"Joe", "Brown",
-			     "Pool", new Integer(10), new Boolean(false)}
-			};
-			table_2 = new JTable(data, columnNames);
+		add(panel_5);
+		panel_5.setOpaque(false);
+		panel_5.setLayout(null);
+		table_2 = new JTable();
+		table_2.setOpaque(false);
 		table_2.setBounds(10, 653, 1306, -517);
 		panel_5.add(table_2);
 		
@@ -112,6 +69,36 @@ public class DayView extends JPanel {
 		lblAgenda.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblAgenda.setBounds(10, 66, 66, 23);
 		panel_5.add(lblAgenda);
+		
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(1366, 25));
+		panel.setBounds(0, 0, 1366, 25);
+		add(panel);
+		
+		JLabel label = new JLabel("Quote Of The Day:");
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel((String) null);
+		label_1.setAlignmentX(0.5f);
+		panel.add(label_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBounds(0, 0, 1346, 662);
+		add(panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBounds(0, 101, 1326, 561);
+		panel_2.add(panel_3);
+		
+		JLabel label_3 = new JLabel("8 September");
+		label_3.setBounds(10, 0, 174, 23);
+		panel_3.add(label_3);
+		
+//		String[] columnNames = {};
+		
+//		Object[][] data = {};
 		
 
 	}
